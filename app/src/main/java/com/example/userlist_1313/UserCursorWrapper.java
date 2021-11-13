@@ -1,9 +1,9 @@
-package com.example.userlist_1147;
+package com.example.userlist_1313;
 
 import android.database.Cursor;
 import android.database.CursorWrapper;
 
-import com.example.userlist_1147.database.UserDBSchema;
+import com.example.userlist_1313.database.UserDBSchema;
 
 import java.util.UUID;
 
