@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import java.util.ArrayList;
 
@@ -31,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         addUserBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MainActivity.this, AddUserActivity.class);
+                Intent intent = new Intent(MainActivity.this, FormUserActivity.class);
                 startActivity(intent);
             }
         });
@@ -48,19 +47,23 @@ public class MainActivity extends AppCompatActivity {
     public class UserHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
         TextView itemTextView;
         String userName;
+        int userPosition; // Для поиска пользователя в списке
         public UserHolder(LayoutInflater inflater, ViewGroup viewGroup) {
             super(inflater.inflate(R.layout.single_item, viewGroup, false));
             itemTextView = itemView.findViewById(R.id.itemTextView);
             itemView.setOnClickListener(this);
         }
-        public void bind(String userName){
+        public void bind(String userName, int position){
             this.userName = userName;
+            userPosition = position;
             itemTextView.setText(userName);
         }
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(MainActivity.this, "ItemClick", Toast.LENGTH_SHORT).show();
+            Intent intent = new Intent(MainActivity.this, InfoUserActivity.class);
+            intent.putExtra("userPosition", userPosition);
+            startActivity(intent);
         }
     }
 
@@ -80,7 +83,7 @@ public class MainActivity extends AppCompatActivity {
         public void onBindViewHolder(UserHolder userHolder, int position) {
             User user = userList.get(position);
             String userName = user.getUserName()+" "+user.getUserLastName();
-            userHolder.bind(userName);
+            userHolder.bind(userName, position);
         }
 
         @Override

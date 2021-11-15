@@ -9,6 +9,7 @@ import com.example.userlist_1313.database.UserBaseHalper;
 import com.example.userlist_1313.database.UserDBSchema;
 
 import java.util.ArrayList;
+import java.util.UUID;
 
 public class Users {
     ArrayList<User> userList;
@@ -59,5 +60,18 @@ public class Users {
             userList.add(user);
         }*/
         return userList;
+    }
+    public void updateUser(User user){
+        ContentValues values = getContentValues(user);
+        String uuidString = user.getUuid().toString();
+        database.update(UserDBSchema.UserTable.NAME,
+                values,
+                UserDBSchema.Cols.UUID+"=?",
+                new String[]{uuidString});
+    }
+    public void deleteUser(UUID uuid){
+        String uuidString = uuid.toString();
+        database.delete(UserDBSchema.UserTable.NAME,
+                UserDBSchema.Cols.UUID+"=?", new String[]{uuidString});
     }
 }
