@@ -59,7 +59,7 @@ public class UserListFragment extends Fragment {
 
         @Override
         public void onClick(View view) {
-            Intent intent = new Intent(getContext(), InfoUserActivity.class);
+            Intent intent = new Intent(getContext(), UserPagerActivity.class);
             intent.putExtra("userPosition", userPosition);
             startActivity(intent);
         }

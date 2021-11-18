@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.UserList_1147">
-        <activity android:name=".InfoUserActivity"></activity>
+        <activity android:name=".UserPagerActivity"></activity>
+        <activity android:name=".InfoUserActivity" />
         <activity android:name=".FormUserActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
